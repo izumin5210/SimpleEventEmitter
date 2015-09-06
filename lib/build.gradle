@@ -5,3 +5,51 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.10.19"
 }
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+def versionName = '1.0.0'
+def siteUrl = 'https://github.com/izumin5210/SimpleEventEmitter'
+def gitUrl = 'https://github.com/izumin5210/SimpleEventEmitter.git'
+
+group = 'com.uxxu.konashi'
+version = versionName
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = project.name
+        desc = 'Simple EventEmitter implementation like node.js'
+        websiteUrl = siteUrl
+        issueTrackerUrl = "${siteUrl}/issues"
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['EventEmitter']
+        publicDownloadNumbers = true
+        version {
+            name = versionName
+            desc = "SimpleEventEmitter ${versionName}"
+            released  = new Date()
+            vcsTag = versionName
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
