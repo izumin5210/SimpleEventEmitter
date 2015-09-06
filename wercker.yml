@@ -1,0 +1,11 @@
+box: mihkels/java8-oracle
+build:
+  steps:
+    - script:
+        name: show base information
+        code: |
+          gradle -v
+    - script:
+        name: run junit with gradle
+        code: |
+          gradle test
