@@ -13,21 +13,21 @@ enum Status {
 
 SimpleEventEmitter<Status, String> emitter = new SimpleEventEmitter<>(Status.class);
 
-emitter.on(Status.CONNECTED, new SimpleEventListener<String> {
+emitter.on(Status.CONNECTED, String.class, new SimpleEventListener<String> {
     @Override
     public void run(String value) {
         // do something...
     }
 });
 
-emitter.on(Status.DISCONNECTED, new SimpleEventListener<String> {
+emitter.on(Status.DISCONNECTED, Integer.class, new SimpleEventListener<Integer> {
     @Override
-    public void run(String value) {
+    public void run(Integer value) {
         // do something...
     }
 });
 
-emitter.emit(Status.CONNECTED, "Successfully connected !");
+emitter.emit(Status.CONNECTED, String.class, "Successfully connected !");
 ```
 
 ## License
