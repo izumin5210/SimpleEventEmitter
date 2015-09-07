@@ -8,4 +8,11 @@ build:
     - script:
         name: run junit with gradle
         code: |
-          gradle test
+          ./gradlew build
+          ./gradlew test
+deploy:
+  steps:
+    - script:
+        name: upload to bintray
+        code: |
+          ./gradlew bintrayUpload
