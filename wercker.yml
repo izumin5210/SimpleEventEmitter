@@ -13,6 +13,14 @@ build:
 deploy:
   steps:
     - script:
+        name: show base information
+        code: |
+          gradle -v
+    - script:
+        name: build with gradle
+        code: |
+          ./gradlew build
+    - script:
         name: upload to bintray
         code: |
           ./gradlew bintrayUpload
