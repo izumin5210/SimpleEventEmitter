@@ -14,7 +14,7 @@ apply plugin: 'maven-publish'
 
 def packageName = 'info.izumin.java'
 def artifactName = 'simpleeventemitter'
-def versionName = '1.1.0'
+def versionName = '1.2.0'
 def siteUrl = 'https://github.com/izumin5210/SimpleEventEmitter'
 def gitUrl = 'https://github.com/izumin5210/SimpleEventEmitter.git'
 
